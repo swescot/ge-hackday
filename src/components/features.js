@@ -2,8 +2,20 @@ import React from 'react'
 import styles from './features.module.css'
 import cn from 'classnames'
 
+const IMAGES = {
+  control: require('../assets/player/Control.png'),
+  customStation: require('../assets/player/customstations.png'),
+  explicit: require('../assets/player/explicit.png'),
+  players: require('../assets/player/players.png'),
+  readyMade: require('../assets/player/Ready-made.png'),
+  scheduling1: require('../assets/player/Scheduling-1.png'),
+  scheduling: require('../assets/player/Scheduling.png'),
+  spotify: require('../assets/player/Spotify-import.png')
+}
+
 export default function Features() {
   const [currentArticle, setCurrentArticle] = React.useState('')
+  const [imageSrc, setImageSrc] = React.useState('players')
 
   return <section className={styles.container}>
     <h1 className={styles.mainTitle}>Features overview</h1>
@@ -13,24 +25,27 @@ export default function Features() {
         return <div key={i} className={styles.feature}>
           <h2>{feature.title}</h2>
           {feature.details.map((detail, l) => {
-            return <Accordion key={l} detail={detail} currentArticle={currentArticle} setCurrentArticle={setCurrentArticle} />
+            return <Accordion key={l} detail={detail} currentArticle={currentArticle} setCurrentArticle={setCurrentArticle} setImageSrc={setImageSrc} />
           })}
         </div>
       })}
       </div>
       <div className={styles.imageContainer}>
-        <img className={styles.image} src="https://www.datocms-assets.com/57355/1645716256-iphone-how-it-works-2x.png?auto=format&w=876"/>
+        <img className={styles.image} src={IMAGES[imageSrc]}/>
       </div>
     </div>
 
   </section>
 }
 
-function Accordion({ detail, currentArticle, setCurrentArticle }) {
+function Accordion({ detail, currentArticle, setCurrentArticle, setImageSrc }) {
   const open = currentArticle === detail.title
-  return <div>
+  return <div className={styles.accordionContainer}>
     <div
-      onClick={() => setCurrentArticle(() => open ? '' : detail.title)}
+      onClick={() => {
+        setImageSrc(detail.image)
+        setCurrentArticle(() => open ? '' : detail.title)
+      }}
       className={cn(styles.accordionTitle, open && styles.selected)}>
       <span>{detail.title}</span>
       <div className={styles.icon}>{open ? '-' : '+'}</div>
@@ -41,54 +56,42 @@ function Accordion({ detail, currentArticle, setCurrentArticle }) {
 
 
 const FEATURES = [
-  {
-    title: "Playlists you create",
+  { title: "",
     details: [
       {
-        title: "Create Playlist from scratch",
-        article: "Search for the name of an artist or a particular song, just like you're used to. Add it to a new or existing playlist, and you can keep the momentum going by adding similar tracks from a list of updated recommendations from our catalog."
+        title: "Your Brand is all we need.",
+        article: "Describe your brand and our industry awarded Create Station feature finds the perfect soundtrack for it.",
+        image: "customStation"
       },
       {
-        title: "Edit a Soundtrack playlist",
-        article: "Start with a playlist made by our experts and add, remove, or reorder songs to make it your own. In just a couple of minutes, you can have a custom playlist with dozens of hours of music."
+        title: "You’re the DJ.",
+        article: "Soundtrack is the only business music service that let you choose exactly the song you want in the order you want it by for instance importing a spotify playlist.",
+        image: "spotify"
       },
       {
-        title: "Make your Spotify playlists legal",
-        article: "Drag in any Spotify playlist and make it legal for your business. It’s that easy, with the same songs in our catalog playing in the same order. You can also create a station from a Spotify playlist with hours of similar music."
-      }
-    ]
-  },
-  {
-    title: "Instant music",
-    details: [
-      {
-        title: "560+ Soundtrack playlists",
-        article: "Each expertly curated playlist is designed for a particular business type, situation, or music genre, and contains an ideal balance of hits and lesser-known songs."
+        title: "Save time with automation.",
+        article: "Soundtrack your week up front with our world-renowed scheduling tool.",
+        image: "scheduling1"
       },
       {
-        title: "Artist playlists",
-        article: "It doesn't get easier than this. Type in a name and get a playlist with songs by that artist and others who make similar music. It's like your favorite musicians suddenly recorded more albums at the click of a button."
+        title: "Match the beat of your customers.",
+        article: "Customise your morning, lunch, evening and night sound with our world-renowed scheduling tool.",
+        image: "scheduling"
       },
       {
-        title: "Custom stations",
-        article: "Create a station around the values and vibe of your business. Click on mood, energy, and genre tags and get a station to match your choices."
-      }
-    ]
-  },
-  {
-    title: "Tools built for business",
-    details: [
-      {
-        title: "Easy scheduling",
-        article: "Schedule in advance to make sure that the music plays when and where it should. Drag and drop playlists into the calendar to meet business hours, expected rush times, and holidays."
+        title: "Family friendly music",
+        article: "Block explicit language with the click of a button.",
+        image: "explicit"
       },
       {
-        title: "Explicit-lyrics filter",
-        article: "Keep your business family-friendly with the flick of a switch and make sure that inappropriate content never ruins the ambiance."
+        title: "The right sound always.",
+        article: "Create roles for your staff to decide who controls your sound.",
+        image: "control"
       },
       {
-        title: "Streamlined controls for staff",
-        article: "Employees can use the Remote App to change the volume, skip a song that isn't going over well, and even share a song with customers for that personal touch (for iPhone only)."
+        title: "No worry about what to play.",
+        article: "Our expertise is your expertise.  Our music experts have created perfect business mixes to fit your brand.",
+        image: "readyMade"
       }
     ]
   }
