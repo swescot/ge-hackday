@@ -1,5 +1,45 @@
 .container {
   width: 100vw;
-  height: 200px;
-  background-color: red;
+  height: 200vh;
+  position: relative;
+  padding: 0 2vw;
+}
+
+.artists {
+  position: absolute;
+  margin-top: 2vh;
+
+  width: 96vw;
+  height: 96vh;
+  border-radius: 20px;
+  background-color: black;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  overflow: hidden;
+}
+
+.column {
+  order: 0;
+  flex: 0 1 auto;
+  width: 274px;
+}
+
+.artist {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  padding-bottom: 10px;
+  opacity: .3;
+}
+
+.title {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 50px;
 }
