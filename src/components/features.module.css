@@ -1,11 +1,25 @@
 .container {
+  background-color: #373239;
+  border-radius: 3rem;
   margin: 0;
   padding: 0;
-  background-color: grey;
   color: white;
+  padding: 32px;
 }
 
 .title {
   margin: 0;
   padding: 0
+}
+
+.selected {
+  border-top: 2px solid white !important;
+}
+
+.accordionTitle {
+  user-select: none;
+  border-top: 2px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

@@ -1,24 +1,34 @@
 import React from 'react'
 import styles from './features.module.css'
+import cn from 'classnames'
 
 export default function Features() {
+
   return <section className={styles.container}>
     <h1>Features overview</h1>
     {FEATURES.map((feature, i) => {
       return <div key={i}>
-        <hr/>
         <h2>{feature.title}</h2>
         {feature.details.map((detail, l) => {
-          return <div key={l}>
-            <h2>{detail.title}</h2>
-            {detail.article}
-          </div>
+          return <Accordion key={l} detail={detail} />
         })}
       </div>
     })}
-
-
   </section>
+}
+
+function Accordion({ detail, onCLick }) {
+  const [open, setOpen] = React.useState(false)
+
+  return <div>
+    <div 
+      onClick={() => setOpen(open => !open)}
+      className={cn(styles.accordionTitle, open && styles.selected)}>
+      <h3>{detail.title}</h3>
+      <div>{open ? '-' : '+'}</div>
+    </div>
+    {open && <p>{detail.article}</p>}
+  </div>
 }
 
 
