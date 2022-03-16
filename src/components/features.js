@@ -3,17 +3,26 @@ import styles from './features.module.css'
 import cn from 'classnames'
 
 export default function Features() {
+  const [imageId, setImageId] = React.useState(0)
 
   return <section className={styles.container}>
     <h1 className={styles.mainTitle}>Features overview</h1>
-    {FEATURES.map((feature, i) => {
-      return <div key={i} className={styles.feature}>
-        <h2>{feature.title}</h2>
-        {feature.details.map((detail, l) => {
-          return <Accordion key={l} detail={detail} />
-        })}
+    <div className={styles.content}>
+      <div className={styles.features}>
+        {FEATURES.map((feature, i) => {
+        return <div key={i} className={styles.feature}>
+          <h2>{feature.title}</h2>
+          {feature.details.map((detail, l) => {
+            return <Accordion key={l} detail={detail} onCLick={setImageId} />
+          })}
+        </div>
+      })}
       </div>
-    })}
+      <div className={styles.imageContainer}>
+        <img className={styles.image} src="https://www.datocms-assets.com/57355/1645716256-iphone-how-it-works-2x.png?auto=format&w=876"/>
+      </div>
+    </div>
+
   </section>
 }
 
@@ -27,7 +36,7 @@ function Accordion({ detail, onCLick }) {
       <span>{detail.title}</span>
       <div className={styles.icon}>{open ? '-' : '+'}</div>
     </div>
-    {open && <span className={styles.article}>{detail.article}</span>}
+    {open && <div className={styles.article}>{detail.article}</div>}
   </div>
 }
 

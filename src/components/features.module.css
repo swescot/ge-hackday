@@ -38,5 +38,38 @@
 }
 
 .article {
-  padding-bottom: 12px;
+  margin-bottom: 4rem;
+}
+
+.features {
+  width: 100%
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  padding: 32px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.image {
+  width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+  .content {
+    flex-direction: row;
+  }
+  .features {
+    width: 50%;
+  }
+  .imageContainer {
+    width: 50%;
+  }
 }
