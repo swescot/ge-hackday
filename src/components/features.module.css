@@ -72,4 +72,8 @@
     width: 50%;
     padding: 32px;
   }
+
+  .image {
+    width: 80%;
+  }
 }

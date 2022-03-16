@@ -3,7 +3,7 @@ import styles from './features.module.css'
 import cn from 'classnames'
 
 export default function Features() {
-  const [imageId, setImageId] = React.useState(0)
+  const [currentArticle, setCurrentArticle] = React.useState('')
 
   return <section className={styles.container}>
     <h1 className={styles.mainTitle}>Features overview</h1>
@@ -13,7 +13,7 @@ export default function Features() {
         return <div key={i} className={styles.feature}>
           <h2>{feature.title}</h2>
           {feature.details.map((detail, l) => {
-            return <Accordion key={l} detail={detail} onCLick={setImageId} />
+            return <Accordion key={l} detail={detail} currentArticle={currentArticle} setCurrentArticle={setCurrentArticle} />
           })}
         </div>
       })}
@@ -26,12 +26,11 @@ export default function Features() {
   </section>
 }
 
-function Accordion({ detail, onCLick }) {
-  const [open, setOpen] = React.useState(false)
-
+function Accordion({ detail, currentArticle, setCurrentArticle }) {
+  const open = currentArticle === detail.title
   return <div>
     <div
-      onClick={() => setOpen(open => !open)}
+      onClick={() => setCurrentArticle(() => open ? '' : detail.title)}
       className={cn(styles.accordionTitle, open && styles.selected)}>
       <span>{detail.title}</span>
       <div className={styles.icon}>{open ? '-' : '+'}</div>
