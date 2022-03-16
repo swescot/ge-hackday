@@ -5,9 +5,9 @@ import cn from 'classnames'
 export default function Features() {
 
   return <section className={styles.container}>
-    <h1>Features overview</h1>
+    <h1 className={styles.mainTitle}>Features overview</h1>
     {FEATURES.map((feature, i) => {
-      return <div key={i}>
+      return <div key={i} className={styles.feature}>
         <h2>{feature.title}</h2>
         {feature.details.map((detail, l) => {
           return <Accordion key={l} detail={detail} />
@@ -21,13 +21,13 @@ function Accordion({ detail, onCLick }) {
   const [open, setOpen] = React.useState(false)
 
   return <div>
-    <div 
+    <div
       onClick={() => setOpen(open => !open)}
       className={cn(styles.accordionTitle, open && styles.selected)}>
-      <h3>{detail.title}</h3>
-      <div>{open ? '-' : '+'}</div>
+      <span>{detail.title}</span>
+      <div className={styles.icon}>{open ? '-' : '+'}</div>
     </div>
-    {open && <p>{detail.article}</p>}
+    {open && <span className={styles.article}>{detail.article}</span>}
   </div>
 }
 

@@ -7,6 +7,14 @@
   padding: 32px;
 }
 
+.mainTitle {
+  font-size: 3rem;
+}
+
+.feature {
+  margin-top: 52px;
+}
+
 .title {
   margin: 0;
   padding: 0
@@ -17,9 +25,18 @@
 }
 
 .accordionTitle {
+  padding: 12px 0;
   user-select: none;
   border-top: 2px solid grey;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.icon {
+  font-size: 32px;
+}
+
+.article {
+  padding-bottom: 12px;
 }
