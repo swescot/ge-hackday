@@ -1,9 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import ArtistParallax from './components/artist-parallax'
 
 function App() {
   return (
     <div className="App">
+      <ArtistParallax />
     </div>
   );
 }
